@@ -6,15 +6,15 @@
 #    By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 18:57:00 by plashkar          #+#    #+#              #
-#    Updated: 2023/05/10 16:50:36 by plashkar         ###   ########.fr        #
+#    Updated: 2023/05/15 18:18:30 by plashkar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-CC = gcc
+CC = cc
 FLAGS = -Wall -Wextra -Werror -I
 
-SRC= ft_printf.c ft_printf_utils.c
+SRC=  ft_printf_utils.c ft_printf.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -23,19 +23,18 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT)
-	ar -crs $(NAME) $(OBJ) $(LIBFT)
-
-$(LIBFT):
-	make -C $(LIBFT_DIR)
+$(NAME): $(OBJ)
+	@cd libft; make
+	@cp $(LIBFT) $(NAME)
+	@ar -crs $(NAME) $(OBJ) $(LIBFT)
 
 clean:
-	rm -f $(OBJ)
-	make -C $(LIBFT_DIR) clean
+	@rm -f $(OBJ)
+	@make -C $(LIBFT_DIR) clean
 
 fclean:
-	rm -f $(NAME)
-	make -C $(LIBFT_DIR) fclean
+	@rm -f $(NAME)
+	@make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
