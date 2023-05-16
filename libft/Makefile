@@ -6,7 +6,7 @@
 #    By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/14 17:00:19 by plashkar          #+#    #+#              #
-#    Updated: 2023/05/15 17:24:28 by plashkar         ###   ########.fr        #
+#    Updated: 2023/05/01 12:21:56 by plashkar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC = \
 	ft_putnbr_fd.c ft_striteri.c ft_strmapi.c ft_substr.c ft_isalnum.c \
 	ft_itoa.c ft_memmove.c ft_putstr_fd.c ft_strjoin.c ft_strncmp.c \
 	ft_tolower.c ft_isalpha.c ft_memset.c ft_split.c ft_strlcat.c ft_strnstr.c \
-	ft_toupper.c
+	ft_toupper.c \
 
 BSRC = \
 	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \

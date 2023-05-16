@@ -6,11 +6,11 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 14:59:02 by plashkar          #+#    #+#             */
-/*   Updated: 2023/05/15 17:26:40 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/05/15 16:48:37 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 int	ft_printchar(int c)
 {
