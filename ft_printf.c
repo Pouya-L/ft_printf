@@ -6,11 +6,11 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 14:59:05 by plashkar          #+#    #+#             */
-/*   Updated: 2023/05/15 16:48:38 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/05/16 16:31:09 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_formatter (va_list args, int c)
 {
@@ -25,9 +25,15 @@ int	ft_formatter (va_list args, int c)
 		printcnt += ft_printstr(va_arg(args, char *));
 	else if (c == 'u')
 		printcnt += ft_print_unsigned_dec(va_arg(args, unsigned int));
+	else if (c == 'x')
+		printcnt += ft_print_hex(va_arg(args, int), 'x');
+	else if (c == 'X')
+		printcnt += ft_print_hex(va_arg(args, int), 'X');
+	else if (c == 'p')
+		printcnt += ft_print_ptr(unsigned long long ptr);
 
-//	else if (c == '%')
-//		printcnt += ft_print_percent_sign(va_arg(args, int));
+	else if (c == '%')
+		printcnt += ft_print_percent_sign(va_arg(args, int));
 	return (printcnt);
 }
 

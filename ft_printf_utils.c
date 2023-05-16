@@ -6,11 +6,13 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 14:59:02 by plashkar          #+#    #+#             */
-/*   Updated: 2023/05/15 16:48:37 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/05/16 13:40:34 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
+
+//to print a single char
 
 int	ft_printchar(int c)
 {
@@ -21,6 +23,8 @@ int	ft_printchar(int c)
 	printcnt++;
 	return (printcnt);
 }
+
+//to print a number in base 10 that can be positive or negative
 
 int	ft_printnum(int c)
 {
@@ -49,6 +53,8 @@ int	ft_printnum(int c)
 	return (printcnt);
 }
 
+//to print a string
+
 int	ft_printstr(char *str)
 {
 	int	printcnt;
@@ -58,6 +64,8 @@ int	ft_printstr(char *str)
 	printcnt = ft_strlen(str);
 	return (printcnt);
 }
+
+//to print an unsigned decimal number in base ten
 
 int	ft_print_unsigned_dec(unsigned int n)
 {
@@ -88,11 +96,72 @@ int	ft_print_unsigned_dec(unsigned int n)
 	return (printcnt);
 }
 
+//to print a number in any base we want, it can not be negative
+
+void	put_number_base(int n, int base, char format)
+{
+	char	c;
+
+	if (n >= base)
+	{
+		put_number_base(n / base, base, format);
+		put_number_base(n % base, base, format);
+	}
+	else
+	{
+		if (n >= 0 && n <= 9)
+			c = n + '0';
+		else
+		{
+			if (format == 'X')
+				c = n - 10 + 'A';
+			if (format == 'x')
+				c = n - 10 + 'a';
+		}
+	}
+	write(1, &c, 1);
+}
+
+//to count the digit of the number in any base
+
+int	digitcnt_base(int num, int base)
+{
+	int	digitcnt;
+	int	sign;
+
+	sign = 0;
+	digitcnt = 0;
+	if (num < 0)
+	{
+		sign = 1;
+		num = num * -1;
+	}
+	if (num == 0)
+		return (1);
+	while (num > 0)
+	{
+		num = num / base;
+		digitcnt++;
+	}
+	return (digitcnt + sign);
+}
+
+//to print a hexodecimal number
+
+int ft_print_hex(int n, char format)
+{
+	put_number_base(n, 16, format);
+	return (digitcnt_base(n, 16));
+}
+
+
+//to print a percent sign
+
 int	ft_print_percent_sign(int c)
 {
 	int	printcnt;
 
 	printcnt = 1;
-	write (1, "%", 1);
+	write (1, "%%", 1);
 	return (printcnt);
 }
