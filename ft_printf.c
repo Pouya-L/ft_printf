@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 14:59:05 by plashkar          #+#    #+#             */
-/*   Updated: 2023/05/16 16:31:09 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/05/17 16:29:09 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_formatter (va_list args, int c)
 {
-	int	printcnt;
+	int		printcnt;
 
 	printcnt = 0;
 	if (c == 'c')
@@ -26,14 +26,13 @@ int	ft_formatter (va_list args, int c)
 	else if (c == 'u')
 		printcnt += ft_print_unsigned_dec(va_arg(args, unsigned int));
 	else if (c == 'x')
-		printcnt += ft_print_hex(va_arg(args, int), 'x');
+		printcnt += ft_print_hex(va_arg(args, unsigned int), 'x');
 	else if (c == 'X')
-		printcnt += ft_print_hex(va_arg(args, int), 'X');
+		printcnt += ft_print_hex(va_arg(args, unsigned int), 'X');
 	else if (c == 'p')
-		printcnt += ft_print_ptr(unsigned long long ptr);
-
+		printcnt += ft_print_ptr(va_arg(args, unsigned long long));
 	else if (c == '%')
-		printcnt += ft_print_percent_sign(va_arg(args, int));
+		printcnt += ft_print_percent_sign();
 	return (printcnt);
 }
 
@@ -49,13 +48,17 @@ int	ft_printf(const char *s, ...)
 	while (s[i])
 	{
 		if (s[i] == '%')
-			printcnt += ft_formatter(args, s[++i]);
-		else
+		{
+			printcnt += ft_formatter(args, s[i + 1]);
+			i++;
+		}
+		else if (s[i] != '%')
 			{
 				write(1, &s[i], 1);
 				printcnt++;
 			}
-		i++;
+			i++;
 	}
+	va_end(args);
 	return (printcnt);
 }

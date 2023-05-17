@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 14:59:02 by plashkar          #+#    #+#             */
-/*   Updated: 2023/05/16 13:40:34 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/05/17 16:26:39 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ int	ft_printstr(char *str)
 	int	printcnt;
 
 	printcnt = 0;
+	if (str == NULL)
+	{
+		ft_putstr_fd("(null)" , 1);
+		return (6);
+	}
 	ft_putstr_fd(str, 1);
 	printcnt = ft_strlen(str);
 	return (printcnt);
@@ -69,14 +74,14 @@ int	ft_printstr(char *str)
 
 int	ft_print_unsigned_dec(unsigned int n)
 {
-	int		printcnt;
-	char	c;
-	int		i;
+	int				printcnt;
+	char			c;
+	unsigned int	n2;
 
 	printcnt = 0;
+	n2 = n;
 	if (n >= 0 && n <= 9)
 		c = n + '0';
-		printcnt ++;
 	if (n >= 10)
 	{
 		c = (n % 10) + '0';
@@ -84,21 +89,13 @@ int	ft_print_unsigned_dec(unsigned int n)
 		ft_print_unsigned_dec(n);
 	}
 	write (1, &c, 1);
-	i = 0;
-	if (n == 0)
-		return (1);
-	while (n > 0)
-	{
-		n = n / 10;
-		i++;
-	}
-	printcnt = (i + 1);
+	printcnt = digitcnt_base(n2, 10);
 	return (printcnt);
 }
 
 //to print a number in any base we want, it can not be negative
 
-void	put_number_base(int n, int base, char format)
+void	put_number_base(unsigned int n, unsigned int base, char format)
 {
 	char	c;
 
@@ -118,13 +115,14 @@ void	put_number_base(int n, int base, char format)
 			if (format == 'x')
 				c = n - 10 + 'a';
 		}
+		write(1, &c, 1);
 	}
-	write(1, &c, 1);
 }
+
 
 //to count the digit of the number in any base
 
-int	digitcnt_base(int num, int base)
+int	digitcnt_base(unsigned int num, unsigned int base)
 {
 	int	digitcnt;
 	int	sign;
@@ -148,7 +146,7 @@ int	digitcnt_base(int num, int base)
 
 //to print a hexodecimal number
 
-int ft_print_hex(int n, char format)
+int ft_print_hex(unsigned int n, char format)
 {
 	put_number_base(n, 16, format);
 	return (digitcnt_base(n, 16));
@@ -157,11 +155,9 @@ int ft_print_hex(int n, char format)
 
 //to print a percent sign
 
-int	ft_print_percent_sign(int c)
+int	ft_print_percent_sign(void)
 {
-	int	printcnt;
-
-	printcnt = 1;
-	write (1, "%%", 1);
-	return (printcnt);
+	char lol = '%';
+	write (1, &lol, 1);
+	return (1);
 }

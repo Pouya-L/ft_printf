@@ -6,13 +6,13 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:48:56 by plashkar          #+#    #+#             */
-/*   Updated: 2023/05/16 16:14:48 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:06:41 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	digitcnt_ptr(uintptr_t num)
+int	digitcnt_ptr(unsigned long long  num)
 {
 	int	digitcnt;
 
@@ -25,7 +25,7 @@ int	digitcnt_ptr(uintptr_t num)
 	return (digitcnt);
 }
 
-void	put_ptr_number(uintptr_t n)
+void	put_ptr_number(unsigned long long  n)
 {
 	char	c;
 
@@ -40,17 +40,16 @@ void	put_ptr_number(uintptr_t n)
 			c = n + '0';
 		else
 		{
-			if (format == 'X')
-				c = n - 10 + 'A';
-			if (format == 'x')
 				c = n - 10 + 'a';
 		}
+		write(1, &c, 1);
 	}
-	write(1, &c, 1);
 }
 
 int	ft_print_ptr(unsigned long long ptr)
 {
+	if (!ptr)
+		return(write(1, "(nil)", 5));
 	write (1, "0x", 2);
 	put_ptr_number(ptr);
 	return (digitcnt_ptr(ptr) + 2);

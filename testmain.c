@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 12:29:41 by plashkar          #+#    #+#             */
-/*   Updated: 2023/05/16 16:31:09 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/05/17 11:00:36 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	main(void)
 
 	*ptr = 42;
 	printf("the address of ptr is %p\n", ptr);
-	ft_print_ptr(ptr);
-	printf("the number of digits is: %d\n", ft_print_ptr(ptr));
+	printf("the number of digits is: %d\n", ft_print_ptr((unsigned long long)ptr));
 	return (0);
 }
