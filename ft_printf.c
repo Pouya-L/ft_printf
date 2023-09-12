@@ -6,15 +6,15 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 14:59:05 by plashkar          #+#    #+#             */
-/*   Updated: 2023/05/17 16:29:09 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/05/23 14:44:42 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_formatter (va_list args, int c)
+int	ft_formatter(va_list args, int c)
 {
-	int		printcnt;
+	int	printcnt;
 
 	printcnt = 0;
 	if (c == 'c')
@@ -32,14 +32,14 @@ int	ft_formatter (va_list args, int c)
 	else if (c == 'p')
 		printcnt += ft_print_ptr(va_arg(args, unsigned long long));
 	else if (c == '%')
-		printcnt += ft_print_percent_sign();
+		printcnt += ft_printchar('%');
 	return (printcnt);
 }
 
 int	ft_printf(const char *s, ...)
 {
-	int	i;
-	int	printcnt;
+	int		i;
+	int		printcnt;
 	va_list	args;
 
 	i = 0;
@@ -53,11 +53,11 @@ int	ft_printf(const char *s, ...)
 			i++;
 		}
 		else if (s[i] != '%')
-			{
-				write(1, &s[i], 1);
-				printcnt++;
-			}
-			i++;
+		{
+			write(1, &s[i], 1);
+			printcnt++;
+		}
+		i++;
 	}
 	va_end(args);
 	return (printcnt);
