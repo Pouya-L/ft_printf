@@ -1,7 +1,7 @@
 # ft_printf
 
 ## Project Overview
-`ft_printf` is a custom implementation of the printf function in the C standard library. This project aims to replicate the functionality of the printf function while also providing extensibility for custom format specifiers. It's designed to be a powerful and flexible tool for formatting and displaying text in C programs.
+`ft_printf` represents a custom implementation of the printf function found in the C standard library. The objective of this project is to reproduce the capabilities of the printf function while allowing for the incorporation of custom format specifiers. It serves as a versatile and robust tool for formatting and presenting text within C programs. During the development of this project, I gained valuable experience in utilizing the va_arg list to handle a dynamic number of arguments.
 
 ## Conversion Specifiers
 
