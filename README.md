@@ -16,3 +16,28 @@
 | `%x`       | Print a number in hexadecimal (base 16), with lowercase.   |
 | `%X`       | Print a number in hexadecimal (base 16), with uppercase.   |
 | `%%`       | Print a percent sign.                                        |
+
+## Getting Started
+
+### Compiling
+Run the following commands:
+
+#### To compile
+```
+make
+```
+#### To remove objects
+```
+make clean
+```
+#### To remove objects and the binary file (program)
+```
+make fclean
+```
+#### To re-compile
+```
+make re
+```
+#### To use it in your program
+By including `ft_printf.h` in your header file, you enable the usage of this function in your main program.
+
